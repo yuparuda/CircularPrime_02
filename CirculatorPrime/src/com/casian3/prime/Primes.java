@@ -13,7 +13,7 @@ public class Primes {
 		return true;
 	}
 	
-	public static ArrayList<Integer> findOutBetween1And(final int upper) {
+	public static ArrayList<Integer> generatePrimesBetween1And(final int upper) {
 		final ArrayList<Integer> primes = new ArrayList<>(upper / 2);
 		primes.add(2); // add a special prime.
 		for (int i = 3; i < upper; i += 2) {

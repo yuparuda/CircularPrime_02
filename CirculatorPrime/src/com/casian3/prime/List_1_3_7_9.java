@@ -2,44 +2,43 @@ package com.casian3.prime;
 
 import java.util.ArrayList;
 
-// Number made ​​up of 1, 3, 7, 9 only
 public class List_1_3_7_9 {
 	static final int[] ELEMENTS = { 1, 3, 7, 9 };
-	private final ArrayList<Integer> final_result;
+	private final ArrayList<Integer> resultList;
 	private final int limit;
 
-	// recursion
+	// using the recursion
 	// ex [ Fist Input : 1,3,7,9 ] -> [ Output : 11, 13, 17, 19, 31,,,]
-	int[] generate(int[] current) {
-		int[] result = new int[current.length * ELEMENTS.length];
-
+	int[] initFinalResultBy(int[] currentList) {
+		int[] newList = new int[currentList.length * ELEMENTS.length];
 		int base = 0;
 		int i = 0;
-		for (int c : current) {
+		
+		for (int c : currentList) {
 			base = 10 * c;
-
+			
 			for (int e : ELEMENTS) {
-				result[i] = base + e;
-				if (result[i] > this.limit) { // bad code maybe
+				newList[i] = base + e;
+				if (newList[i] > this.limit) { // bad code maybe
 					return null;
 				}
-				final_result.add(result[i++]);
+				resultList.add(newList[i++]);
 			}
 		}
-		return generate(result);
+		return initFinalResultBy(newList);
 	}
 
-	public ArrayList<Integer> get() {
-		generate(ELEMENTS);
-		return final_result;
+	public ArrayList<Integer> getListUntilUpper() {
+		initFinalResultBy(ELEMENTS);
+		return resultList;
 	}
 
-	// limit : 1000000;
+	// ex limit : 1000000;
 	List_1_3_7_9(int limit) {
 		this.limit = limit;
-		final_result = new ArrayList<>(this.limit); // bad
+		resultList = new ArrayList<>(this.limit); // to improve this limit
 		for (int e : ELEMENTS) {
-			final_result.add(e);
+			resultList.add(e);
 		}
 	}
 }
